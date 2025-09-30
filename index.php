@@ -162,35 +162,45 @@
 	<article class="resume-wrapper text-center position-relative">
 		<div class="resume-wrapper-inner mx-auto text-start bg-white shadow-lg">
 		<h1 class="py-4 text-center">OUR AMAZING TEAM</h1>
-		<?php 
-		
-		foreach ($members as $key => $member) {
+		<?php
+        function createCard($infoArray, $index){
+			$name = $infoArray['name'];
+			$firstName = explode(" ", $name)[0];
+			$imgSrc = "assets/images/" . strtolower($firstName) . "Profile.jpg";
+            echo
+                "<header class='resume-header mt-4 t-4 pt-4 pt-md-0'>
+                    <div class='row'>
+                        <div class='col-block col-md-auto resume-picture-holder text-center text-md-start'>
+                            <img class='picture' src='$imgSrc' alt=''>
+                        </div><!--//col-->
+                        <div class='col'>
+                            <div class='row p-4 justify-content-center justify-content-md-between'>
+                                <div class='primary-info col-auto'>
+                                    <h1 class='name mt-0 mb-1 text-white text-uppercase'>
+                                        {$name}
+                                    </h1>
+                                    <div class='title mb-3'>
+                                        {$infoArray['role']}
+                                    </div>
+                                    <a href='detail.php?member=member$index' class='btn btn-secondary' class='btn btn-secondary'>See full profile</a>
+                                </div><!--//primary-info-->
+                                <div class='secondary-info col-auto mt-2'>
+                                </div><!--//secondary-info-->
+                            </div><!--//row-->
+                        </div><!--//col-->
+                    </div><!--//row-->
+                </header>";
+        }
+
+        $inArr1 = array("name"=>"Jack Dixon", "role"=>"Member");
+        $inArr2 = array("name"=>"Xander Murphy", "role"=>"Member");
+        $inArr3 = array("name"=>"Jarred Engleman", "role"=>"Member");
+
+
+        createCard($inArr1, 3);
+        createCard($inArr2, 1);
+        createCard($inArr3, 2);
     ?>
-		<header class="resume-header mt-4 t-4 pt-4 pt-md-0">
-			<div class="row">
-				<div class="col-block col-md-auto resume-picture-holder text-center text-md-start">
-					<img class="picture" src="<?php echo $member["profilePic"]?>" alt="">
-				</div><!--//col-->
-				<div class="col">
-					<div class="row p-4 justify-content-center justify-content-md-between">
-						<div class="primary-info col-auto">
-							<h1 class="name mt-0 mb-1 text-white text-uppercase">
-								<?php echo $member["name"]; ?>
-							</h1>
-							<div class="title mb-3">
-								<?php echo $member["role"]; ?>
-							</div>
-							<a href="detail.php?member=<?php echo $key; ?>" class="btn btn-secondary">See full profile</a>
-						</div><!--//primary-info-->
-						<div class="secondary-info col-auto mt-2">
-						</div><!--//secondary-info-->
-					</div><!--//row-->
-				</div><!--//col-->
-			</div><!--//row-->
-    </header>
-	<?php
-	}
-	?>
 	
 	</article> 
 
