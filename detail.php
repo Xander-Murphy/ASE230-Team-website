@@ -134,6 +134,74 @@
 	$memberKey = $_GET['member'];
 	$member = $members[$memberKey];
 ?>
+<?php
+$jobs = [];
+for ($i = 0; $i <= 1; $i++) {
+    if (!empty($member["job{$i}Title"])) {
+        $jobs[] = [
+            "title" => $member["job{$i}Title"],
+            "location" => $member["job{$i}Location"] ?? "",
+            "duration" => $member["job{$i}Duration"] ?? "",
+            "description" => $member["job{$i}Description"] ?? "",
+            "achievementsHead" => $member["job{$i}AchievementsHead"] ?? "",
+            "achievementsList" => $member["job{$i}AchievementsList"] ?? [],
+            "softwares" => $member["job{$i}Softwares"] ?? []
+        ];
+    }
+}
+?>
+<?php
+function displayWorkExperience($job) {
+?>
+    <article class="resume-timeline-item position-relative pb-5">
+        <div class="resume-timeline-item-header mb-2">
+            <div class="d-flex flex-column flex-md-row">
+                <h3 class="resume-position-title font-weight-bold mb-1">
+                    <?php echo $job['title']; ?>
+                </h3>
+                <div class="resume-company-name ms-auto">
+                    <?php echo $job['location']; ?>
+                </div>
+            </div>
+            <div class="resume-position-time">
+                <?php echo $job['duration']; ?>
+            </div>
+        </div>
+        <div class="resume-timeline-item-desc">
+            <p><?php echo $job['description']; ?></p>
+
+            <?php if (!empty($job['achievementsList'])): ?>
+                <h4 class="resume-timeline-item-desc-heading font-weight-bold">
+                    <?php echo $job['achievementsHead']; ?>
+                </h4>
+                <ul>
+                    <?php foreach ($job['achievementsList'] as $achievement): ?>
+                        <?php if (!empty($achievement)): ?>
+                            <li><?php echo $achievement; ?></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <?php if (!empty($job['softwares'])): ?>
+                <h4 class="resume-timeline-item-desc-heading font-weight-bold">Software Used:</h4>
+                <ul class="list-inline">
+                    <?php foreach ($job['softwares'] as $software): ?>
+                        <?php if (!empty($software)): ?>
+                            <li class="list-inline-item">
+                                <span class="badge bg-secondary badge-pill">
+                                    <?php echo $software; ?>
+                                </span>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+        </div>
+    </article>
+<?php
+}
+?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -201,91 +269,15 @@
 			    <div class="row">
 				    <div class="col-lg-9">
 					    <section class="resume-section experience-section mb-5">
-						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience</h2>
-						    <div class="resume-section-content">
-							    <div class="resume-timeline position-relative">
-								    <article class="resume-timeline-item position-relative pb-5">
-									    
-									    <div class="resume-timeline-item-header mb-2">
-										    <div class="d-flex flex-column flex-md-row">
-										        <h3 class="resume-position-title font-weight-bold mb-1"><?php echo $member['job1Title'];?></h3>
-										        <div class="resume-company-name ms-auto"><?php echo $member['job1Location'];?></div>
-										    </div><!--//row-->
-										    <div class="resume-position-time"><?php echo $member['job1Duration'];?></div>
-									    </div><!--//resume-timeline-item-header-->
-									    <div class="resume-timeline-item-desc">
-										    <p><?php echo $member['job1Description'];?></p>
-										    <?php if (!empty($member['job1AchievementsList'])): ?>
-    											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
-													<?php if ($member['job1AchievementsList'][0] != ""){ echo "Achievements:"; } else { echo ""; } ?>
-												</h4>
-												<p><?php echo $member['job1AchievementsHead']; ?></p>
-												<ul>
-													<?php foreach ($member['job2AchievementsList'] as $achievement): ?>
-														<?php if (!empty($achievement)): ?>
-															<li><?php echo $achievement; ?></li>
-														<?php endif; ?>
-													<?php endforeach; ?>
-												</ul>
-											<?php endif; ?>
-										    <h4 class="resume-timeline-item-desc-heading font-weight-bold">
-												<?php if ($member['job1Softwares'][0] != ""){
-													echo "Software Used:";
-												}
-												else {
-													echo "";
-												}
-												?>
-											</h4>
-										    <ul class="list-inline">
-											    <li class="list-inline-item"><span class="badge bg-secondary badge-pill"><?php echo $member['job1Softwares'][0];?></span></li>
-											    <li class="list-inline-item"><span class="badge bg-secondary badge-pill"><?php echo $member['job1Softwares'][1];?></span></li>
-											    <li class="list-inline-item"><span class="badge bg-secondary badge-pill"><?php echo $member['job1Softwares'][2];?></span></li>
-											    <li class="list-inline-item"><span class="badge bg-secondary badge-pill"><?php echo $member['job1Softwares'][3];?></span></li>
-											    <li class="list-inline-item"><span class="badge bg-secondary badge-pill"><?php echo $member['job1Softwares'][4];?></span></li>
-										    </ul>
-									    </div><!--//resume-timeline-item-desc-->
-
-								    </article><!--//resume-timeline-item-->
-								    
-								    <article class="resume-timeline-item position-relative pb-5">
-									    
-									    <div class="resume-timeline-item-header mb-2">
-										    <div class="d-flex flex-column flex-md-row">
-										        <h3 class="resume-position-title font-weight-bold mb-1"><?php echo $member['job2Title'];?></h3>
-										        <div class="resume-company-name ms-auto"><?php echo $member['job2Location'];?></div>
-										    </div><!--//row-->
-										    <div class="resume-position-time"><?php echo $member['job2Duration'];?></div>
-									    </div><!--//resume-timeline-item-header-->
-									    <div class="resume-timeline-item-desc">
-										    <p><?php echo $member['job2Description'];?></p>
-										    <?php if (!empty($member['job2AchievementsList'])): ?>
-    											<h4 class="resume-timeline-item-desc-heading font-weight-bold">
-													<?php if ($member['job2AchievementsList'][0] != ""){ echo "Achievements:"; } else { echo ""; } ?>
-												</h4>
-												<p><?php echo $member['job2AchievementsHead']; ?></p>
-												<ul>
-													<?php foreach ($member['job2AchievementsList'] as $achievement): ?>
-														<?php if (!empty($achievement)): ?>
-															<li><?php echo $achievement; ?></li>
-														<?php endif; ?>
-													<?php endforeach; ?>
-												</ul>
-											<?php endif; ?>
-									    </div><!--//resume-timeline-item-desc-->
-
-								    </article><!--//resume-timeline-item-->
-								    
-								    
-							    </div><!--//resume-timeline-->
-							    
-							    
-							    
-							    
-							    
-							    
-						    </div>
-					    </section><!--//projects-section-->
+								<h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience</h2>
+								<div class="resume-section-content">
+									<div class="resume-timeline position-relative">
+										<?php foreach ($jobs as $job): ?>
+											<?php displayWorkExperience($job); ?>
+										<?php endforeach; ?>
+									</div>
+								</div>
+							</section><!--//projects-section-->
 				    </div>
 				    <div class="col-lg-3">
 					    <section class="resume-section skills-section mb-5">
