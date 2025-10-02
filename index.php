@@ -1,7 +1,13 @@
 <?php
+function calculateAge($dob) {
+	$birthDay = new dateTime($dob);
+	$today = new dateTime();
+	return $today->diff($birthDay)->y;
+}
 	$members = [
 		"member1" => [
 			"name" => "Xander Murphy",
+			"dob" => "2003-11-16",
 			"profilePic"=> "assets/images/xanderProfile.jpg",
 			"role" => "Member",
 			"jobTitle" => "Software Engineer",
@@ -47,6 +53,7 @@
 		],
 		"member2" => [
         "name" => "Jarred Engleman",
+		"dob" => "2003-11-11",
 		"profilePic"=> "assets/images/jarredProfile.png",
         "role" => "Member",
         "jobTitle" => "Penetration Tester",
@@ -89,6 +96,7 @@
     	],
 		"member3" => [
 			"name" => "Jack Dixon",
+			"dob" => "2006-09-01",
 			"profilePic"=> "assets/images/jackProfile.jpg",
 			"role" => "Member",
 			"jobTitle" => "Software Engineer",
