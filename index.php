@@ -53,8 +53,8 @@ function calculateAge($dob) {
 		],
 		"member2" => [
         "name" => "Jarred Engleman",
-		"dob" => "2003-11-11",
-		"profilePic"=> "assets/images/jarredProfile.png",
+				"dob" => "2003-11-11",
+				"profilePic"=> "assets/images/jarredProfile.png",
         "role" => "Member",
         "jobTitle" => "Penetration Tester",
         "email"=> "englemanj1@nku.edu",
@@ -190,6 +190,7 @@ function calculateAge($dob) {
                                     <div class='title mb-3'>
                                         {$infoArray['role']}
                                     </div>
+																		<p><strong>Age:</strong> " . calculateAge($infoArray['dob']) . "</p>
                                     <a href='detail.php?member=member$index' class='btn btn-secondary' class='btn btn-secondary'>See full profile</a>
                                 </div><!--//primary-info-->
                                 <div class='secondary-info col-auto mt-2'>
@@ -200,9 +201,9 @@ function calculateAge($dob) {
                 </header>";
         }
 
-        $inArr1 = array("name"=>"Jack Dixon", "role"=>"Member");
-        $inArr2 = array("name"=>"Xander Murphy", "role"=>"Member");
-        $inArr3 = array("name"=>"Jarred Engleman", "role"=>"Member");
+        $inArr1 = array("name"=>"Jack Dixon", "role"=>"Member", "dob"=>"2006-09-01");
+				$inArr2 = array("name"=>"Xander Murphy", "role"=>"Member", "dob"=>"2003-11-16");
+				$inArr3 = array("name"=>"Jarred Engleman", "role"=>"Member", "dob"=>"2003-11-11");
 
 
         createCard($inArr1, 3);
