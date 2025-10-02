@@ -136,7 +136,7 @@
 ?>
 <?php
 $jobs = [];
-for ($i = 0; $i <= 1; $i++) {
+for ($i = 1; $i <= 4; $i++) {
     if (!empty($member["job{$i}Title"])) {
         $jobs[] = [
             "title" => $member["job{$i}Title"],
